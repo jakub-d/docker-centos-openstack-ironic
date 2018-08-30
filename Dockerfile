@@ -1,6 +1,6 @@
 FROM centos:7.5.1804 as ipxe-builder
 ENV IPXE_MASTER_SNAPSHOT=https://git.ipxe.org/ipxe.git/snapshot/master.tar.gz
-RUN yum -y install make gcc
+RUN yum -y install gcc make perl
 RUN mkdir /tmp/ipxe
 RUN curl -f ${IPXE_MASTER_SNAPSHOT} -o /tmp/ipxe/master.tar.gz
 RUN tar --strip-components=1 -xzf /tmp/ipxe/master.tar.gz -C /tmp/ipxe
