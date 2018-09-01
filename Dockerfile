@@ -9,7 +9,7 @@ RUN make configure
 RUN make bin-x86_64-efi/ipxe.efi
 
 FROM centos:7.5.1804
-ENV OPENSTACK_RELEASE=queens
+ENV OPENSTACK_RELEASE=rocky
 RUN groupadd -g 997 ironic && useradd -u 998 -d /var/lib/ironic -s /sbin/nologin -M -g ironic ironic
 RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
     yum -y install centos-release-openstack-${OPENSTACK_RELEASE} && \
