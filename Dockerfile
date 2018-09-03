@@ -13,6 +13,7 @@ ENV OPENSTACK_RELEASE=rocky
 RUN groupadd -g 997 ironic && useradd -u 998 -d /var/lib/ironic -s /sbin/nologin -M -g ironic ironic
 RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
     yum -y install centos-release-openstack-${OPENSTACK_RELEASE} && \
+    yum -y install epel-release && \
     yum -y upgrade && \
     yum -y install mysql-community-client \
                    openstack-ironic-api \
