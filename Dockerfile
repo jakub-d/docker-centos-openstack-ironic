@@ -21,6 +21,7 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
                    patch \
                    python-ironicclient \
                    python-pip \
+                   python2-openstackclient.noarch \
                    qemu-img \
                    syslinux \
                    wget &&\
