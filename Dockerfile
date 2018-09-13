@@ -20,12 +20,11 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
                    openstack-ironic-conductor \
                    patch \
                    python-ironicclient \
-                   python-pip \
                    python2-openstackclient.noarch \
+                   tftp-server \
                    qemu-img \
                    syslinux \
                    wget &&\
-    pip --no-cache-dir install ptftpd && \
     mv /etc/ironic/rootwrap.d /etc/rootwrap.d-ironic && \
     mkdir /tmp/patches
 COPY --from=ipxe-builder /tmp/ipxe/src/bin-x86_64-efi/ipxe.efi /usr/share/syslinux/ipxe.efi
