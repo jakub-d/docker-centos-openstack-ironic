@@ -24,7 +24,8 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
                    tftp-server \
                    qemu-img \
                    syslinux \
-                   wget &&\
+                   wget \
+                   xinetd &&\
     mv /etc/ironic/rootwrap.d /etc/rootwrap.d-ironic && \
     mkdir /tmp/patches
 COPY --from=ipxe-builder /tmp/ipxe/src/bin-x86_64-efi/ipxe.efi /usr/share/syslinux/ipxe.efi
