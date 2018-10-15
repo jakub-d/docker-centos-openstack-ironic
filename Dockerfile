@@ -16,7 +16,8 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
     yum -y install centos-release-openstack-${OPENSTACK_RELEASE} && \
     yum -y install epel-release && \
     yum -y upgrade && \
-    yum -y install ipxe-bootimgs \
+    yum -y install git \
+                   ipxe-bootimgs \
                    mysql-community-client \
                    openstack-ironic-api \
                    openstack-ironic-conductor \
