@@ -24,13 +24,15 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
                    patch \
                    python-ironicclient \
                    python2-openstackclient.noarch \
-                   tftp-server \
+                   rsyslog \
                    qemu-img \
                    syslinux \
+                   tftp-server \
                    wget &&\
     mv /etc/ironic/rootwrap.d /etc/rootwrap.d-ironic && \
     mkdir /tmp/patches
 COPY --from=ipxe-builder /tmp/ipxe/src/bin-x86_64-efi/ipxe.efi /usr/share/syslinux/custom-ipxe.efi
+COPY rsyslog.conf /etc/
 
 VOLUME /etc/ironic
 USER ironic:ironic
