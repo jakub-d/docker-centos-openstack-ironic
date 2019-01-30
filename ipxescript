@@ -2,4 +2,6 @@
 
 ifopen
 dhcp
+isset http://${next-server}:6969/boot.ipxe && chain http://${next-server}:6969/boot.ipxe ||
+isset http://${next-server}:69/boot.ipxe && chain http://${next-server}:69/boot.ipxe ||
 chain http://${next-server}/boot.ipxe
