@@ -1,13 +1,13 @@
 FROM centos:7.5.1804 as ipxe-builder
 ENV IPXE_MASTER_SNAPSHOT=https://git.ipxe.org/ipxe.git/snapshot/master.tar.gz
-RUN yum -y install gcc make perl
+RUN yum -y install gcc xz-devel make perl
 RUN mkdir /tmp/ipxe
 RUN curl -f ${IPXE_MASTER_SNAPSHOT} -o /tmp/ipxe/master.tar.gz
 RUN tar --strip-components=1 -xzf /tmp/ipxe/master.tar.gz -C /tmp/ipxe
 WORKDIR /tmp/ipxe/src
 COPY ipxescript /tmp/ipxe/src/
 RUN make configure
-RUN make bin-x86_64-efi/ipxe.efi EMBED=/tmp/ipxe/src/ipxescript
+RUN make bin/undionly.kpxe bin-x86_64-efi/ipxe.efi EMBED=/tmp/ipxe/src/ipxescript
 
 FROM centos:7.5.1804
 ENV OPENSTACK_RELEASE=rocky
@@ -32,6 +32,7 @@ RUN rpm -ivh http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm && \
     mv /etc/ironic/rootwrap.d /etc/rootwrap.d-ironic && \
     mkdir /tmp/patches
 COPY --from=ipxe-builder /tmp/ipxe/src/bin-x86_64-efi/ipxe.efi /usr/share/syslinux/custom-ipxe.efi
+COPY --from=ipxe-builder /tmp/ipxe/src/bin/undionly.kpxe /usr/share/syslinux/custom-undionly.kpxe
 COPY rsyslog.conf /etc/
 
 VOLUME /etc/ironic
