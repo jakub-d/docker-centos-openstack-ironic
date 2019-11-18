@@ -16,14 +16,20 @@ RUN yum -y install centos-release-openstack-${OPENSTACK_RELEASE} && \
     yum -y install epel-release && \
     yum -y upgrade && \
     yum -y install git \
+                   httpd \
                    ipxe-bootimgs \
                    mariadb \
+                   mod_wsgi \
+                   less \
+                   openstack-keystone \
                    openstack-ironic-api \
                    openstack-ironic-conductor \
                    patch \
+                   python-crypto \
                    python-ironicclient \
                    python2-openstackclient.noarch \
                    python2-PyMySQL \
+                   python2-rsa \
                    rsyslog \
                    qemu-img \
                    syslinux \
